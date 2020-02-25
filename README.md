@@ -53,6 +53,21 @@ http://localhost:3000/
     $ docker build -t nodeserver-run -f Dockerfile-run .
     $ docker run -i -p 3000:3000 -t nodeserver-run
 
+<br/>
+
+### 05. Version labeling and control
+
+    $ docker tag nodeserver-run nodeserver:1.0.0
+
+    $ docker tag nodeserver-run webmakaka/nodeserver:1.0.0
+
+    $ docker login
+    $ docker push webmakaka/nodeserver:1.0.0
+
+    $ docker rmi webmakaka/nodeserver:1.0.0
+
+    $ docker run -i -p 3000:3000 webmakaka/nodeserver:1.0.0
+
 ---
 
 **Marley**
