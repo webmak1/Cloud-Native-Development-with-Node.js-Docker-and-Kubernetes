@@ -1,5 +1,9 @@
 # [Linkedin] Cloud Native Development with Node.js, Docker, and Kubernetes
 
+http://cloudnativejs.io/
+
+<br/>
+
 ## 02. Build application
 
 <br/>
@@ -21,6 +25,25 @@ http://localhost:3000/
     $ docker build -t nodeserver -f Dockerfile .
 
     $ docker run -i -p 3000:3000 -t nodeserver
+
+<br/>
+
+### 03. Create a Dockerfile dev and debug
+
+    $ docker build -t nodeserver-tools -f Dockerfile-tools .
+
+<br/>
+
+    $ docker run -i -v "$PWD"/myapp/package.json:/tmp/package.json -v "$PWD"/myapp/node_modules_linux:/tmp/node_modules -w /tmp -t node:10 npm install
+
+<br/>
+
+    $ docker run -i -p 3000:3000 -v "$PWD"/myapp/:/app -v "$PWD"/myapp/node_modules_linux:/app/node_modules -t nodeserver-tools /bin/run-dev
+
+
+<br/>
+
+    $ docker run -i --expose 9229 -p 9229:9229 -p 3000:3000 -v "$PWD"/myapp/:/app -v "$PWD"/myapp/node_modules_linux:/app/node_modules -t nodeserver-tools /bin/run-debug
 
 ---
 
