@@ -45,6 +45,14 @@ http://localhost:3000/
 
     $ docker run -i --expose 9229 -p 9229:9229 -p 3000:3000 -v "$PWD"/myapp/:/app -v "$PWD"/myapp/node_modules_linux:/app/node_modules -t nodeserver-tools /bin/run-debug
 
+
+<br/>
+
+### 04. Making a product
+
+    $ docker build -t nodeserver-run -f Dockerfile-run .
+    $ docker run -i -p 3000:3000 -t nodeserver-run
+
 ---
 
 **Marley**
