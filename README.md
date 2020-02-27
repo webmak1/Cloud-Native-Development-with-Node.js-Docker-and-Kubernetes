@@ -68,6 +68,74 @@ http://localhost:3000/
 
     $ docker run -i -p 3000:3000 webmakaka/nodeserver:1.0.0
 
+
+<br/>
+
+## 03. Deployment on Kubernetes
+
+<br/>
+
+### Helm
+
+**install helm 2x**
+
+    $ helm init
+
+    $ helm repo list
+
+<br/>
+
+hub.helm.sh
+
+<br/>
+
+    $ git clone https://github.com/CloudNativeJS/helm.git
+
+    $ cd helm
+
+    $ cp -r chart/ <project_folder>
+
+<br/>
+
+    $ vi values
+
+<br/>
+
+    repository: webmakaka/nodeserver
+
+
+<br/>
+
+    $ cd <project_folder>
+
+    $ helm install --name nodeserver chart/nodeserver
+
+    $ helm status nodeserver
+
+localhost:32278  
+OK
+
+<br/>
+
+    $ helm upgrade --name nodeserver chart/nodeserver
+
+    $ helm history nodeserver
+
+    $ helm rollback nodeserver 1
+
+    $ helm delete --purge nodeserver
+
+<br/>
+
+## 04. Add support for health
+
+
+
+
+
+<br/>
+<br/>
+
 ---
 
 **Marley**
