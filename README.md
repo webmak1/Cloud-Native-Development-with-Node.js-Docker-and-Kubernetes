@@ -129,9 +129,33 @@ OK
 
 ## 04. Add support for health
 
+    $ cd myapp
+    $ npm install --save @cloudnative/health-connect
+
+    $ npm run start
+
+ http://localhost:3000/live
+
+ http://localhost:3000/ready
+
+<br/>
+
+    $ docker build -t nodeserver-run -f Dockerfile-run .
+    $ docker tag nodeserver-run webmakaka/nodeserver:1.1.0
+
+<br/>
+
+    $ docker login
+    $ docker push webmakaka/nodeserver:1.1.0
+
+<br/>
+
+    $ helm upgrade --install nodeserver chart/nodeserver
+
+    $ helm status nodeserver
 
 
-
+http://192.168.99.166:30973/ready/
 
 <br/>
 <br/>
