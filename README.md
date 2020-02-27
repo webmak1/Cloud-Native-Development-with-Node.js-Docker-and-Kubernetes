@@ -1,5 +1,7 @@
 # [Linkedin] Cloud Native Development with Node.js, Docker, and Kubernetes
 
+https://www.lynda.com/Node-js-tutorials/Cloud-Native-Development-Node-js-Docker-Kubernetes/808675-2.html
+
 http://cloudnativejs.io/
 
 <br/>
@@ -75,8 +77,6 @@ http://localhost:3000/
 
 <br/>
 
-### Helm
-
 **install helm 2x**
 
     $ helm init
@@ -127,7 +127,7 @@ OK
 
 <br/>
 
-## 04. Add support for health
+## 04. Adding Support for Health
 
     $ cd myapp
     $ npm install --save @cloudnative/health-connect
@@ -156,6 +156,76 @@ OK
 
 
 http://192.168.99.166:30973/ready/
+
+<br/>
+
+## 05. Add Support for Metrics
+
+<br/>
+
+### 19 - Introduction to Prometheus
+
+    $ cd myapp
+    $ npm install --save appmetrics-prometheus
+
+<br/>
+
+http://localhost:3000/metrics
+
+
+<br/>
+
+    $ docker build -t nodeserver-run -f Dockerfile-run .
+    $ docker tag nodeserver-run webmakaka/nodeserver:1.2.0
+
+<br/>
+
+    $ docker login
+    $ docker push webmakaka/nodeserver:1.2.0
+
+<br/>
+
+    $ helm upgrade --install nodeserver chart/nodeserver
+
+    $ helm status nodeserver
+
+<br/>
+
+http://192.168.99.166:30973/metrics
+
+<br/>
+
+### 20 - Deploy Prometheus to Kubernetes
+
+    $ helm install --name prometheus stable/prometheus --namespace prometheus
+
+    $ helm status prometheus
+
+    $ export POD_NAME=$(kubectl get pods --namespace prometheus -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}")
+
+    $ kubectl --namespace prometheus port-forward $POD_NAME 9090
+
+
+localhost:9090
+
+http://localhost:9090/targets
+
+<br/>
+
+![Application](../img/pic-01.png?raw=true)
+
+<br/>
+
+http://localhost:9090/graph
+
+
+os_cpu_used_ratio
+
+http_request_duration_microseconds
+
+<br/>
+
+![Application](../img/pic-02.png?raw=true)
 
 <br/>
 <br/>
