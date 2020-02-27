@@ -212,7 +212,7 @@ http://localhost:9090/targets
 
 <br/>
 
-![Application](../img/pic-01.png?raw=true)
+![Application](./img/pic-01.png?raw=true)
 
 <br/>
 
@@ -225,7 +225,7 @@ http_request_duration_microseconds
 
 <br/>
 
-![Application](../img/pic-02.png?raw=true)
+![Application](./img/pic-02.png?raw=true)
 
 
 <br/>
@@ -258,7 +258,7 @@ Prometheus --> Prometheus --> Import
 
 <br/>
 
-![Application](../img/pic-03.png?raw=true)
+![Application](./img/pic-03.png?raw=true)
 
 <br/>
 
@@ -280,7 +280,7 @@ Name --> HTTP REsponsiveness (milliseconds)
 
 <br/>
 
-![Application](../img/pic-04.png?raw=true)
+![Application](./img/pic-04.png?raw=true)
 
 
 <br/>
@@ -309,7 +309,7 @@ nodeserver --> find Fraces
 
 <br/>
 
-![Application](../img/pic-05.png?raw=true)
+![Application](./img/pic-05.png?raw=true)
 
 <br/>
 
@@ -360,7 +360,7 @@ https://hub.helm.sh/charts/jaegertracing/jaeger
 
 <br/>
 
-![Application](../img/pic-05.png?raw=true)
+![Application](./img/pic-05.png?raw=true)
 
 <br/>
 <br/>
