@@ -268,7 +268,7 @@ Top buttons -->  Add panel --> Add Query
 
 metrics --> os_cpu_used_ratio{kubernetes_name="nodeserver-service"}
 
-Name --> CPU USAGE
+Generat Title --> CPU USAGE
 
 <br/>
 
@@ -277,6 +277,90 @@ Add query
 metrics --> http_request_duration_mecroseconds{kubernetes_name="nodeserver-service"}/1000
 
 Name --> HTTP REsponsiveness (milliseconds)
+
+<br/>
+
+![Application](../img/pic-04.png?raw=true)
+
+
+<br/>
+
+## 06. Add Support for Request Tracking
+
+<br/>
+
+### 24 - Adding OpenTracing to the app
+
+
+    $ cd myapp
+    $ npm install --save appmetrics-zipkin
+
+<br/>
+
+    $ docker run -d -p 9411:9411 openzipkin/zipkin:1
+
+http://localhost:9411/zipkin/
+
+
+http://localhost:3000/live
+
+nodeserver --> find Fraces
+
+
+<br/>
+
+![Application](../img/pic-05.png?raw=true)
+
+<br/>
+
+### 25 - Deploy OpenTracing to Kubernetes
+
+<!--
+
+https://hub.helm.sh/charts/incubator/jaeger
+
+    $ helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com
+
+-->
+
+https://hub.helm.sh/charts/jaegertracing/jaeger
+
+    $ helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
+
+    $ helm install --name jaeger jaegertracing/jaeger \
+    --set cassandra.config.max_heap_size=1024M \
+    --set cassandra.config.heap_new_size=256M \
+    --set cassandra.resources.requests.memory=2048Mi \
+    --set cassandra.resources.requests.cpu=0.4 \
+    --set cassandra.resources.limits.memory=2048Mi \
+    --set cassandra.resources.limits.cpu=0.4
+
+
+<br/>
+
+    $ docker build -t nodeserver-run -f Dockerfile-run .
+    $ docker tag nodeserver-run webmakaka/nodeserver:1.3.0
+
+<br/>
+
+    $ docker login
+    $ docker push webmakaka/nodeserver:1.3.0
+
+<br/>
+
+    $ helm upgrade --install nodeserver chart/nodeserver
+
+<br/>
+
+    $ helm status jaeger
+
+    $ export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/instance=jaeger,app.kubernetes.io/component=query" -o jsonpath="{.items[0].metadata.name}")
+
+    $ kubectl port-forward --namespace default $POD_NAME 8080:16686
+
+<br/>
+
+![Application](../img/pic-05.png?raw=true)
 
 <br/>
 <br/>

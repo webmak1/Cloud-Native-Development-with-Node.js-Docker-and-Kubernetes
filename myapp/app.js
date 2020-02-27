@@ -1,3 +1,8 @@
+const zipkin = require('appmetrics-zipkin')({
+  host: 'jaeger-collector.jaeger.svc.cluster.local',
+  port: 9411,
+  serviceName: "nodeserver"
+});
 const prom = require('appmetrics-prometheus').attach();
 var createError = require('http-errors');
 var express = require('express');
