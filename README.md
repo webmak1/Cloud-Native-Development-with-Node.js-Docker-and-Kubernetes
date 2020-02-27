@@ -227,6 +227,39 @@ http_request_duration_microseconds
 
 ![Application](../img/pic-02.png?raw=true)
 
+
+<br/>
+
+### 21 - Deploy Grafana to Kubernetes
+
+    $ helm install --name grafana stable/grafana --namespace grafana --set adminPassword=PASSWORD
+
+    $ helm status grafana
+
+    $ export POD_NAME=$(kubectl get pods --namespace grafana -l "app=grafana,release=grafana" -o jsonpath="{.items[0].metadata.name}")
+
+    $ kubectl --namespace grafana port-forward $POD_NAME 3000
+
+http://localhost:3000/
+
+admin/PASSWORD
+
+
+Add data source -->
+
+Url http://prometheus-server.prometheus.svc.cluster.local
+
+Dashboard 
+
+import --> 1621
+
+Options:  
+Prometheus --> Prometheus --> Import
+
+<br/>
+
+![Application](../img/pic-03.png?raw=true)
+
 <br/>
 <br/>
 
