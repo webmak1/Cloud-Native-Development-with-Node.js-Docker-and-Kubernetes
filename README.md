@@ -261,6 +261,24 @@ Prometheus --> Prometheus --> Import
 ![Application](../img/pic-03.png?raw=true)
 
 <br/>
+
+### 22 - Build charts for your applications
+
+Top buttons -->  Add panel --> Add Query
+
+metrics --> os_cpu_used_ratio{kubernetes_name="nodeserver-service"}
+
+Name --> CPU USAGE
+
+<br/>
+
+Add query
+
+metrics --> http_request_duration_mecroseconds{kubernetes_name="nodeserver-service"}/1000
+
+Name --> HTTP REsponsiveness (milliseconds)
+
+<br/>
 <br/>
 
 ---
