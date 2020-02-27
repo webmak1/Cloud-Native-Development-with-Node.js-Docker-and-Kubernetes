@@ -360,7 +360,7 @@ https://hub.helm.sh/charts/jaegertracing/jaeger
 
 <br/>
 
-![Application](./img/pic-05.png?raw=true)
+![Application](./img/pic-06.png?raw=true)
 
 <br/>
 <br/>
