@@ -42,11 +42,9 @@ http://localhost:3000/
 
     $ docker run -i -p 3000:3000 -v "$PWD"/myapp/:/app -v "$PWD"/myapp/node_modules_linux:/app/node_modules -t nodeserver-tools /bin/run-dev
 
-
 <br/>
 
     $ docker run -i --expose 9229 -p 9229:9229 -p 3000:3000 -v "$PWD"/myapp/:/app -v "$PWD"/myapp/node_modules_linux:/app/node_modules -t nodeserver-tools /bin/run-debug
-
 
 <br/>
 
@@ -69,7 +67,6 @@ http://localhost:3000/
     $ docker rmi webmakaka/nodeserver:1.0.0
 
     $ docker run -i -p 3000:3000 webmakaka/nodeserver:1.0.0
-
 
 <br/>
 
@@ -103,7 +100,6 @@ hub.helm.sh
 
     repository: webmakaka/nodeserver
 
-
 <br/>
 
     $ cd <project_folder>
@@ -134,9 +130,9 @@ OK
 
     $ npm run start
 
- http://localhost:3000/live
+http://localhost:3000/live
 
- http://localhost:3000/ready
+http://localhost:3000/ready
 
 <br/>
 
@@ -154,7 +150,6 @@ OK
 
     $ helm status nodeserver
 
-
 http://192.168.99.166:30973/ready/
 
 <br/>
@@ -171,7 +166,6 @@ http://192.168.99.166:30973/ready/
 <br/>
 
 http://localhost:3000/metrics
-
 
 <br/>
 
@@ -205,7 +199,6 @@ http://192.168.99.166:30973/metrics
 
     $ kubectl --namespace prometheus port-forward $POD_NAME 9090
 
-
 localhost:9090
 
 http://localhost:9090/targets
@@ -218,7 +211,6 @@ http://localhost:9090/targets
 
 http://localhost:9090/graph
 
-
 os_cpu_used_ratio
 
 http_request_duration_microseconds
@@ -226,7 +218,6 @@ http_request_duration_microseconds
 <br/>
 
 ![Application](./img/pic-02.png?raw=true)
-
 
 <br/>
 
@@ -244,12 +235,11 @@ http://localhost:3000/
 
 admin/PASSWORD
 
-
 Add data source -->
 
 Url http://prometheus-server.prometheus.svc.cluster.local
 
-Dashboard 
+Dashboard
 
 import --> 1621
 
@@ -264,7 +254,7 @@ Prometheus --> Prometheus --> Import
 
 ### 22 - Build charts for your applications
 
-Top buttons -->  Add panel --> Add Query
+Top buttons --> Add panel --> Add Query
 
 metrics --> os_cpu_used_ratio{kubernetes_name="nodeserver-service"}
 
@@ -282,7 +272,6 @@ Name --> HTTP REsponsiveness (milliseconds)
 
 ![Application](./img/pic-04.png?raw=true)
 
-
 <br/>
 
 ## 06. Add Support for Request Tracking
@@ -290,7 +279,6 @@ Name --> HTTP REsponsiveness (milliseconds)
 <br/>
 
 ### 24 - Adding OpenTracing to the app
-
 
     $ cd myapp
     $ npm install --save appmetrics-zipkin
@@ -301,11 +289,9 @@ Name --> HTTP REsponsiveness (milliseconds)
 
 http://localhost:9411/zipkin/
 
-
 http://localhost:3000/live
 
 nodeserver --> find Fraces
-
 
 <br/>
 
@@ -327,14 +313,13 @@ https://hub.helm.sh/charts/jaegertracing/jaeger
 
     $ helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
 
-    $ helm install --name jaeger jaegertracing/jaeger \
+    $ helm install jaeger jaegertracing/jaeger \
     --set cassandra.config.max_heap_size=1024M \
     --set cassandra.config.heap_new_size=256M \
     --set cassandra.resources.requests.memory=2048Mi \
     --set cassandra.resources.requests.cpu=0.4 \
     --set cassandra.resources.limits.memory=2048Mi \
     --set cassandra.resources.limits.cpu=0.4
-
 
 <br/>
 
